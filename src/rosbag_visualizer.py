@@ -1,21 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from include import rosbag_visualizer_config
 
 csv_file = "../data/csv/take6_joint_states.csv"
 df = pd.read_csv(csv_file)
 
-rename_dict = {
-    '__time': 'time',
-    '/LF/joint_states/LF_B2C/effort': 'B2C',
-    '/LF/joint_states/LF_C2F/effort': 'C2F',
-    '/LF/joint_states/LF_F2T/effort': 'F2T',
-    '/LF/joint_states/LF_T2E/effort': 'T2E',
-    '/LF/joint_states/LF_steering/effort': 'steering',
-    '/LF/joint_states/LF_driving/effort': 'driving',
-    '/LF/joint_states/LF_gripper/effort': 'gripper'
-}
-
-df_clean = df[list(rename_dict.keys())].rename(columns = rename_dict).dropna() ## remove NaN
+df_clean = df[list(rosbag_visualizer_config.rename_dict.keys())].rename(columns = rosbag_visualizer_config.rename_dict).dropna() ## remove NaN
 
 # print(df.columns) ## for debug
 df_clean['relative_time'] = df_clean['time'] - df_clean['time'].iloc[0]
