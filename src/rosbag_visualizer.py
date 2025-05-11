@@ -5,13 +5,14 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from include import rosbag_visualizer_config
 
-csv_file = "../data/csv/take6_joint_states.csv"
+csv_file = f"../data/csv/{rosbag_visualizer_config.take_label}_joint_states.csv"
 df = pd.read_csv(csv_file)
-result_dir = os.path.join(os.path.dirname(__file__), '..', 'results')
+result_base_dir = os.path.join(os.path.dirname(__file__), '..', 'results')
+result_dir = os.path.join(result_base_dir, rosbag_visualizer_config.take_label)
 os.makedirs(result_dir, exist_ok = True)
 
 def plot_leg_effort(df, rename_dict, leg_label):
-    df_leg = df[list(rename_dict.keys())].rename(columns = rename_dict).dropna()
+    df_leg = df[list(rename_dict.keys())].rename(columns = rename_dict).dropna() ## remove NaN
     df_leg['relative_time'] = df_leg['time'] - df_leg['time'].iloc[0]
 
     plt.figure(figsize=(10, 6))
@@ -28,7 +29,7 @@ def plot_leg_effort(df, rename_dict, leg_label):
     plt.grid(True)
     plt.tight_layout()
 
-    save_path = os.path.join(result_dir, f'{leg_label}_effort.png')
+    save_path = os.path.join(result_dir, f'{leg_label}_effort_{rosbag_visualizer_config.take_label}.png')
     plt.savefig(save_path)
 
 plot_leg_effort(df, rosbag_visualizer_config.LF_rename_dict, 'LF')

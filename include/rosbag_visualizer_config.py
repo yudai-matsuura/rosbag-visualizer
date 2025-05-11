@@ -1,3 +1,5 @@
+take_label = 'take6' ## Experiment take
+
 LF_rename_dict = {
     '__time': 'time',
     '/LF/joint_states/LF_B2C/effort': 'B2C',
