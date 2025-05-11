@@ -1,4 +1,4 @@
-take_label = 'take6' ## Experiment take
+take_label = 'take5' ## Experiment take
 
 LF_rename_dict = {
     '__time': 'time',
