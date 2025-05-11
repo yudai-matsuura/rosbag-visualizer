@@ -1,4 +1,5 @@
-take_label = 'take6' ## Experiment take
+## Experiment take
+take_label = 'take6'
 
 ## Encoder dict
 LF_encoder_rename_dict = {
