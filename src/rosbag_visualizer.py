@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from include import rosbag_visualizer_config
+from config import rosbag_visualizer_config
 
 csv_file_encoder = f"../data/csv/{rosbag_visualizer_config.take_label}_joint_states.csv"
 csv_file_target_vel = f"../data/csv/{rosbag_visualizer_config.take_label}_joint_trajectory.csv"
