@@ -31,7 +31,7 @@ leg_dfs = []
 for rd, label, color in zip(rename_dicts, leg_labels, colors):
     df_leg = df_encoder[list(rd.keys())].rename(columns = rd).dropna() # remove NaN
     df_leg['relative_time'] = df_leg['time'] - df_leg['time'].iloc[0]
-    df_leg['effort_sum'] = df_leg[['B2C', 'C2F', 'F2T', 'T2E', 'steering', 'driving', 'gripper']].sum(axis = 1)
+    df_leg['effort_sum'] = df_leg[['B2C', 'C2F', 'F2T', 'T2E', 'steering', 'driving', 'gripper']].abs().sum(axis = 1)
     
     leg_dfs.append(df_leg[['relative_time', 'effort_sum']].copy())
     # plot per leg
