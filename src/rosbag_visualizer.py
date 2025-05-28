@@ -5,11 +5,12 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config import rosbag_visualizer_config
 
-csv_file_encoder = f"../data/csv/{rosbag_visualizer_config.take_label}_joint_states.csv"
-csv_file_target_vel = f"../data/csv/{rosbag_visualizer_config.take_label}_joint_trajectory.csv"
+experiment_date = '20250501_Grieel' # Change Here
+csv_file_encoder = f"../data/{experiment_date}/{rosbag_visualizer_config.take_label}_joint_states.csv"
+csv_file_target_vel = f"../data/{experiment_date}/{rosbag_visualizer_config.take_label}_joint_trajectory.csv"
 df_encoder = pd.read_csv(csv_file_encoder)
 df_target_vel = pd.read_csv(csv_file_target_vel)
-result_base_dir = os.path.join(os.path.dirname(__file__), '..', 'results')
+result_base_dir = os.path.join(os.path.dirname(__file__), '..', 'results', experiment_date)
 result_dir = os.path.join(result_base_dir, rosbag_visualizer_config.take_label)
 os.makedirs(result_dir, exist_ok = True)
 
